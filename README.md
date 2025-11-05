@@ -14,7 +14,7 @@ Redis를 활용한 헥사고날 아키텍처 기반 비디오 컨텐츠 서비�
 
 - [java] 17
 - [springboot] 3.3.0
-- [docker]
+- [docker] 20.10.12
 - [mysql] 8
-- [redis]
-- [mongodb]
+- [redis] 7.2.5
+- [mongodb] 6.0.16

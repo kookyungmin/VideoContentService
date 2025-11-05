@@ -1,0 +1,33 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: vcs-mysql
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/conf.d/vcs.cnf
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - '13306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=localroot
+      - MYSQL_DATABASE=vcs
+      - MYSQL_USER=local
+      - MYSQL_PASSWORD=local
+    restart: always
+  redis:
+    image: redis:7.2.5
+    container_name: vcs-redis
+    ports:
+      - '16379:6379'
+    restart: always
+  mongodb:
+    image: mongo:6.0.16
+    container_name: vcs-mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongodb/data:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=local
+      - MONGO_INITDB_ROOT_PASSWORD=local
+      - MONGO_INITDB_DATABASE=vcs
+    restart: always
