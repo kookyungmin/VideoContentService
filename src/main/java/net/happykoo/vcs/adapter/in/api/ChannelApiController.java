@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import net.happykoo.vcs.adapter.in.api.dto.ChannelRequest;
 import net.happykoo.vcs.adapter.in.api.dto.Response;
 import net.happykoo.vcs.application.port.in.ChannelUseCase;
+import net.happykoo.vcs.domain.channel.Channel;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,5 +25,11 @@ public class ChannelApiController {
         channelUseCase.updateChannel(channelId, channelRequest);
 
         return Response.ok();
+    }
+
+    @GetMapping("{channelId}")
+    public Response<Channel> getChannel(@PathVariable String channelId) {
+        Channel channel = channelUseCase.getChannel(channelId);
+        return Response.ok(channel);
     }
 }
