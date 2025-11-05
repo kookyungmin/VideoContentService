@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: video-content-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:13306/vcs
+    username: local
+    password: local
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+  data:
+    redis:
+      host: localhost
+      port: 16379
+    mongodb:
+      host: localhost
+      port: 27017
+      database: vcs
+      username: local
+      password: local
+      authentication-database: admin

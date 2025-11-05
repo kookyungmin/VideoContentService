@@ -13,6 +13,22 @@ java {
     }
 }
 
+//test embedded redis 를 위함
+sourceSets {
+    intTest {
+        java {
+            srcDirs("src/intTest/java")
+            compileClasspath += sourceSets.main.output + test.output
+            runtimeClasspath += sourceSets.main.output + test.output
+        }
+    }
+}
+
+configurations {
+    intTestImplementation.extendsFrom testImplementation
+    intTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
 repositories {
     mavenCentral()
 }
@@ -35,7 +51,7 @@ dependencies {
     testRuntimeOnly 'com.h2database:h2'
     testRuntimeOnly 'de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x:4.16.1'
     //redis를 소스를 통해 직접 start 하고 stop 해야해서 implementation
-    testImplementation 'com.github.codemonstur:embedded-redis:1.4.3'
+    intTestImplementation 'com.github.codemonstur:embedded-redis:1.4.3'
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
