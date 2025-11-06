@@ -2,7 +2,7 @@ package net.happykoo.vcs.adapter.in.api;
 
 import net.happykoo.vcs.adapter.in.api.dto.Response;
 import net.happykoo.vcs.adapter.in.resolver.LoginUser;
-import org.apache.catalina.User;
+import net.happykoo.vcs.domain.user.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

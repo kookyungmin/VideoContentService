@@ -2,11 +2,10 @@ package net.happykoo.vcs.adapter.in.resolver;
 
 import lombok.RequiredArgsConstructor;
 import net.happykoo.vcs.adapter.in.api.attribute.HeaderAttribute;
-import net.happykoo.vcs.application.port.in.UserSessionUseCase;
-import net.happykoo.vcs.application.port.in.UserUseCase;
 import net.happykoo.vcs.application.port.out.LoadUserPort;
 import net.happykoo.vcs.application.port.out.UserSessionPort;
 import net.happykoo.vcs.domain.user.User;
+import net.happykoo.vcs.exception.DomainNotFoundException;
 import net.happykoo.vcs.exception.UnauthorizedException;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -36,9 +35,10 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
 
         var userId = userSessionPort.getUserId(authKey);
         if (userId == null) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("Authkey is wrong");
         }
 
-        return loadUserPort.loadUser(userId);
+        return loadUserPort.loadUser(userId)
+                .orElseThrow(DomainNotFoundException::new);
     }
 }
