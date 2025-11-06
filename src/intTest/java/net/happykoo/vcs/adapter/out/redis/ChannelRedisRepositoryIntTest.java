@@ -4,6 +4,7 @@ import net.happykoo.vcs.adapter.out.redis.channel.ChannelRedisHash;
 import net.happykoo.vcs.adapter.out.redis.channel.ChannelRedisRepository;
 import net.happykoo.vcs.config.TestRedisConfig;
 import net.happykoo.vcs.domain.channel.ChannelFixtures;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ChannelRedisRepositoryIntTest {
     @Autowired
     private ChannelRedisRepository channelRedisRepository;
+
+    @BeforeEach
+    void setup() {
+        channelRedisRepository.deleteAll();
+    }
 
     @Test
     @DisplayName("@Indexed 로 지정한 property 조회 테스트")

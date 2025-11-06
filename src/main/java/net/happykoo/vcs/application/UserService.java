@@ -13,6 +13,7 @@ public class UserService implements UserUseCase {
 
     @Override
     public User getUser(String userId) {
+        if (userId == null) return null;
         return loadUserPort.loadUser(userId)
                 .orElse(null);
     }

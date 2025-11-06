@@ -8,17 +8,25 @@ import net.happykoo.vcs.domain.user.User;
 import net.happykoo.vcs.exception.DomainNotFoundException;
 import net.happykoo.vcs.exception.UnauthorizedException;
 import org.springframework.core.MethodParameter;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import java.util.Optional;
+
 @Component
-@RequiredArgsConstructor
 public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
     private final UserSessionPort userSessionPort;
     private final LoadUserPort loadUserPort;
+
+    public UserHandlerMethodArgumentResolver(@Nullable UserSessionPort userSessionPort,
+                                             @Nullable LoadUserPort loadUserPort) {
+        this.userSessionPort = userSessionPort;
+        this.loadUserPort = loadUserPort;
+    }
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
