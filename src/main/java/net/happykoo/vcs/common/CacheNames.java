@@ -25,6 +25,10 @@ public class CacheNames {
     public static final String SUBSCRIBE_CHANNEL_BY_USER = SUBSCRIBE + SEPARATOR + "channel-by-user";
     public static final String SUBSCRIBE_USER = SUBSCRIBE + SEPARATOR + "user";
 
+    public static final String COMMENT = "comment";
+    public static final String COMMENT_LIKE = COMMENT + SEPARATOR + "like";
+    public static final String COMMENT_PINNED = COMMENT + SEPARATOR + "pinned";
+
     public static List<String> getCacheNames() {
         List<String> cacheNames = new ArrayList<>();
 

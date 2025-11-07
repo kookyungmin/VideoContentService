@@ -1,6 +1,6 @@
 package net.happykoo.vcs.application.port.out;
 
-public interface VideoLikePort {
+public interface LikeVideoPort {
     Long addVideoLike(String videoId, String userId);
 
     Long removeVideoLike(String videoId, String userId);

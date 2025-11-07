@@ -22,4 +22,12 @@ public class RedisKeyGenerator {
     public static String getSubscribeUserKey(String userId) {
         return SUBSCRIBE_USER + SEPARATOR + userId;
     }
+
+    public static String getCommentLikeKey(String commentId) {
+        return COMMENT_LIKE + SEPARATOR + commentId;
+    }
+
+    public static String getPinnedCommentKey(String videoId) {
+        return COMMENT_PINNED + SEPARATOR + videoId;
+    }
 }

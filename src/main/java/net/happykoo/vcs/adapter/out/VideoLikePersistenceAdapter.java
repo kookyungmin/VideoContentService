@@ -1,14 +1,14 @@
 package net.happykoo.vcs.adapter.out;
 
 import lombok.RequiredArgsConstructor;
-import net.happykoo.vcs.application.port.out.VideoLikePort;
+import net.happykoo.vcs.application.port.out.LikeVideoPort;
 import net.happykoo.vcs.common.RedisKeyGenerator;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class VideoLikePersistenceAdapter implements VideoLikePort {
+public class VideoLikePersistenceAdapter implements LikeVideoPort {
     private final StringRedisTemplate stringRedisTemplate;
 
     @Override

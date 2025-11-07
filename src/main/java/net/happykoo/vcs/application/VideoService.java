@@ -17,7 +17,7 @@ import java.util.UUID;
 public class VideoService implements VideoUseCase {
     private final LoadVideoPort loadVideoPort;
     private final SaveVideoPort saveVideoPort;
-    private final VideoLikePort videoLikePort;
+    private final LikeVideoPort likeVideoPort;
     private final LoadChannelPort loadChannelPort;
     private final SaveChannelPort saveChannelPort;
 
@@ -25,7 +25,7 @@ public class VideoService implements VideoUseCase {
     public Video getVideo(String videoId) {
         var video = loadVideoPort.loadVideo(videoId);
         var viewCount = loadVideoPort.getViewCount(videoId);
-        var likeCount = videoLikePort.getVideoLikeCount(videoId);
+        var likeCount = likeVideoPort.getVideoLikeCount(videoId);
 
         video.bindCount(viewCount, likeCount);
 
@@ -38,7 +38,7 @@ public class VideoService implements VideoUseCase {
                 .stream()
                 .map(video -> {
                     var viewCount = loadVideoPort.getViewCount(video.getId());
-                    var likeCount = videoLikePort.getVideoLikeCount(video.getId());
+                    var likeCount = likeVideoPort.getVideoLikeCount(video.getId());
                     video.bindCount(viewCount, likeCount);
                     return video;
                 })

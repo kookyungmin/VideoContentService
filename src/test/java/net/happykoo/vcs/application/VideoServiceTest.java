@@ -24,13 +24,13 @@ public class VideoServiceTest {
 
     private final LoadVideoPort loadVideoPort = mock(LoadVideoPort.class);
     private final SaveVideoPort saveVideoPort = mock(SaveVideoPort.class);
-    private final VideoLikePort videoLikePort = mock(VideoLikePort.class);
+    private final LikeVideoPort likeVideoPort = mock(LikeVideoPort.class);
     private final LoadChannelPort loadChannelPort = mock(LoadChannelPort.class);
     private final SaveChannelPort saveChannelPort = mock(SaveChannelPort.class);
 
     @BeforeEach
     void setUp() {
-        videoService = new VideoService(loadVideoPort, saveVideoPort, videoLikePort, loadChannelPort, saveChannelPort);
+        videoService = new VideoService(loadVideoPort, saveVideoPort, likeVideoPort, loadChannelPort, saveChannelPort);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class VideoServiceTest {
                 .toList();
         given(loadVideoPort.loadVideoByChannel(any())).willReturn(list);
         given(loadVideoPort.getViewCount(any())).willReturn(100L, 150L, 200L);
-        given(videoLikePort.getVideoLikeCount(any())).willReturn(10L, 15L, 20L);
+        given(likeVideoPort.getVideoLikeCount(any())).willReturn(10L, 15L, 20L);
         // When
         var result = videoService.listVideos(channelId);
         // Then

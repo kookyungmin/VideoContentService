@@ -1,6 +1,6 @@
 package net.happykoo.vcs.application;
 
-import net.happykoo.vcs.application.port.out.VideoLikePort;
+import net.happykoo.vcs.application.port.out.LikeVideoPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,18 +15,18 @@ import static org.mockito.Mockito.mock;
 class VideoLikeServiceTest {
     private VideoLikeService videoLikeService;
 
-    private final VideoLikePort videoLikePort = mock(VideoLikePort.class);
+    private final LikeVideoPort likeVideoPort = mock(LikeVideoPort.class);
 
     @BeforeEach
     void setUp() {
-        videoLikeService = new VideoLikeService(videoLikePort);
+        videoLikeService = new VideoLikeService(likeVideoPort);
     }
 
     @Test
     @DisplayName("user가 video 에 대해 좋아요를 하면 user-video like 추가")
     void test1() {
         // given
-        given(videoLikePort.addVideoLike(any(), any())).willReturn(3L);
+        given(likeVideoPort.addVideoLike(any(), any())).willReturn(3L);
         // when
         var result = videoLikeService.likeVideo("videoId", "userId");
         // then
@@ -37,7 +37,7 @@ class VideoLikeServiceTest {
     @DisplayName("user가 video 에 대해 좋아요를 취소하면 user-video like 제거")
     void test2() {
         // given
-        given(videoLikePort.removeVideoLike(any(), any())).willReturn(4L);
+        given(likeVideoPort.removeVideoLike(any(), any())).willReturn(4L);
         // when
         var result = videoLikeService.unlikeVideo("videoId", "userId");
         // then
@@ -49,7 +49,7 @@ class VideoLikeServiceTest {
     @DisplayName("user가 video에 대해 좋아요를 했는지 여부 반환")
     void testIsLikeVideo(Boolean value) {
         // given
-        given(videoLikePort.isVideoLikeMember(any(), any())).willReturn(value);
+        given(likeVideoPort.isVideoLikeMember(any(), any())).willReturn(value);
 
         var result = videoLikeService.isLikedVideo("videoId", "userId");
 
@@ -58,7 +58,7 @@ class VideoLikeServiceTest {
 
     @Test
     void testGetCountVideoLike() {
-        given(videoLikePort.getVideoLikeCount(any())).willReturn(20L);
+        given(likeVideoPort.getVideoLikeCount(any())).willReturn(20L);
 
         var result = videoLikeService.getVideoLikeCount("videoId");
 
