@@ -20,6 +20,7 @@ public class VideoService implements VideoUseCase {
     private final LikeVideoPort likeVideoPort;
     private final LoadChannelPort loadChannelPort;
     private final SaveChannelPort saveChannelPort;
+    private final MessagePort messagePort;
 
     @Override
     public Video getVideo(String videoId) {
@@ -60,6 +61,9 @@ public class VideoService implements VideoUseCase {
         var channel = loadChannelPort.loadChannel(video.getChannelId()).orElseThrow(DomainNotFoundException::new);
         channel.getStatistics().updateVideoCount(channel.getStatistics().getVideoCount());
         saveChannelPort.saveChannel(channel);
+
+        //구독자에게 pub/sub 방식으로 메세지 전송
+        messagePort.sendNewVideMessage(videoRequest.channelId(), video.getId());
 
         return video;
     }

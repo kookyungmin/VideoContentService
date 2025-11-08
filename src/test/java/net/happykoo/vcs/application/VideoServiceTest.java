@@ -27,10 +27,11 @@ public class VideoServiceTest {
     private final LikeVideoPort likeVideoPort = mock(LikeVideoPort.class);
     private final LoadChannelPort loadChannelPort = mock(LoadChannelPort.class);
     private final SaveChannelPort saveChannelPort = mock(SaveChannelPort.class);
+    private final MessagePort messagePort = mock(MessagePort.class);
 
     @BeforeEach
     void setUp() {
-        videoService = new VideoService(loadVideoPort, saveVideoPort, likeVideoPort, loadChannelPort, saveChannelPort);
+        videoService = new VideoService(loadVideoPort, saveVideoPort, likeVideoPort, loadChannelPort, saveChannelPort, messagePort);
     }
 
     @Test

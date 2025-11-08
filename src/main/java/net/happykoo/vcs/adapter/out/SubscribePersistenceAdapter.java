@@ -68,4 +68,12 @@ public class SubscribePersistenceAdapter implements SubscribePort {
                 .map(ChannelJpaEntity::toDomain)
                 .toList();
     }
+
+    @Override
+    public List<User> findAllSubscriber(String channelId) {
+        return subscribeJpaRepository.findAllSubscriber(channelId)
+                .stream()
+                .map(UserJpaEntity::toDomain)
+                .toList();
+    }
 }

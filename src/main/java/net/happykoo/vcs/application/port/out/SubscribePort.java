@@ -11,4 +11,5 @@ public interface SubscribePort {
     void deleteSubscribeChannel(Channel channel, User user);
 
     List<Channel> listSubscribeChannel(String userId);
+    List<User> findAllSubscriber(String channelId);
 }
