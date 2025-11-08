@@ -1,5 +1,6 @@
 package net.happykoo.vcs.adapter.out.mongo.comment;
 
+import net.happykoo.vcs.config.TestRedisConfig;
 import net.happykoo.vcs.domain.comment.Comment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-@SpringBootTest
+@SpringBootTest(classes = TestRedisConfig.class)
 class CommentMongoRepositoryIntTest {
     @Autowired
     private CommentMongoRepository commentMongoRepository;

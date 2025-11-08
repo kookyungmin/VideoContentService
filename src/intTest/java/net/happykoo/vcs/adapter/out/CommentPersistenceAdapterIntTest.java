@@ -1,6 +1,7 @@
 package net.happykoo.vcs.adapter.out;
 
 import net.happykoo.vcs.adapter.out.mongo.comment.CommentDocument;
+import net.happykoo.vcs.config.TestRedisConfig;
 import net.happykoo.vcs.domain.comment.CommentFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-@SpringBootTest
+@SpringBootTest(classes = TestRedisConfig.class)
 class CommentPersistenceAdapterIntTest {
     @Autowired
     private CommentPersistenceAdapter commentPersistenceAdapter;
