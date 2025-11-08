@@ -25,8 +25,8 @@ import java.util.UUID;
 public class CommentService implements CommentUseCase {
     private final LoadCommentPort loadCommentPort;
     private final SaveCommentPort saveCommentPort;
-    private final LoadUserPort loadUserPort;
     private final LikeCommentPort likeCommentPort;
+    private final LoadUserPort loadUserPort;
 
     @Override
     public Comment createComment(User user, CommentRequest commentRequest) {

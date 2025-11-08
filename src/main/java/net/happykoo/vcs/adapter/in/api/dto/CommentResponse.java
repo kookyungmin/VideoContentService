@@ -1,5 +1,6 @@
 package net.happykoo.vcs.adapter.in.api.dto;
 
+import lombok.Builder;
 import net.happykoo.vcs.domain.comment.Comment;
 import net.happykoo.vcs.domain.user.User;
 
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+@Builder
 public record CommentResponse (
     String id,
     String videoId,

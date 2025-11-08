@@ -48,7 +48,7 @@ public class ChannelSubscribeControllerTest extends AuthBaseControllerTest {
         mockMvc
             .perform(
                 post("/api/v1/subscribe?channelId={channelId}", "channelId")
-                    .header(HeaderAttribute.X_AUTH_KEY, UUID.randomUUID().toString())
+                    .header(HeaderAttribute.X_AUTH_KEY, authKey)
             )
             .andExpectAll(
                     status().isOk(),
@@ -68,7 +68,7 @@ public class ChannelSubscribeControllerTest extends AuthBaseControllerTest {
         mockMvc
             .perform(
                 get("/api/v1/subscribe/mine")
-                    .header(HeaderAttribute.X_AUTH_KEY, UUID.randomUUID().toString())
+                    .header(HeaderAttribute.X_AUTH_KEY, authKey)
             )
             .andExpectAll(
                 status().isOk(),

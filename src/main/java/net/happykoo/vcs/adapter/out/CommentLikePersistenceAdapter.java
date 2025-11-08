@@ -2,6 +2,7 @@ package net.happykoo.vcs.adapter.out;
 
 import lombok.RequiredArgsConstructor;
 import net.happykoo.vcs.application.port.out.LikeCommentPort;
+import net.happykoo.vcs.common.RedisKeyGenerator;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ public class CommentLikePersistenceAdapter implements LikeCommentPort {
 
     @Override
     public Long getCommentLikeCount(String commentId) {
-        var likeCount = redisTemplate.opsForValue().get(getCommentLikeCount(commentId));
+        var likeCount = redisTemplate.opsForValue().get(RedisKeyGenerator.getCommentLikeKey(commentId));
         return Optional.ofNullable(likeCount)
                 .orElse(0L);
     }

@@ -7,6 +7,7 @@ import net.happykoo.vcs.domain.user.UserFixtures;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -17,7 +18,8 @@ public class AuthBaseControllerTest {
     @MockBean
     private LoadUserPort loadUserPort;
 
-    private User user = UserFixtures.stub();
+    protected User user = UserFixtures.stub();
+    protected String authKey = UUID.randomUUID().toString();
 
     void prepareUser() {
         given(userSessionPort.getUserId(anyString())).willReturn("happykoo");
