@@ -40,7 +40,7 @@ public class CacheNames {
                     if(!SEPARATOR.equals(field.get(null))) {
                         cacheNames.add((String) field.get(null));
                     }
-                } catch (IllegalAccessException e) {
+                } catch (Exception e) {
                     log.error(e.getMessage());
                 }
             }
